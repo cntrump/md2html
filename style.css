@@ -66,7 +66,7 @@ h1 {
 }
 
 mark {
-    background-color: #ff0;
+    background-color: var(--color-auto-yellow-2);
     color:var(--color-text-primary)
 }
 
@@ -398,6 +398,8 @@ textarea {
     --color-bg-success-inverse: #28a745;
     --color-bg-warning: #fff5b1;
     --color-bg-warning-inverse: #ffd33d;
+    --color-scrollbar-thumb: rgba(0, 0, 0, 0.175);
+    --color-scrollbar-thumb-hover: rgba(0, 0, 0, 0.35);
     --color-shadow-small: 0 1px 0 rgba(27, 31, 35, 0.04);
     --color-shadow-medium: 0 3px 6px rgba(149, 157, 165, 0.15);
     --color-shadow-large: 0 8px 24px rgba(149, 157, 165, 0.2);
@@ -1048,6 +1050,8 @@ textarea {
         --color-bg-success-inverse: #28a745;
         --color-bg-warning: #fff5b1;
         --color-bg-warning-inverse: #ffd33d;
+        --color-scrollbar-thumb: rgba(0, 0, 0, 0.175);
+        --color-scrollbar-thumb-hover: rgba(0, 0, 0, 0.35);
         --color-shadow-small: 0 1px 0 rgba(27, 31, 35, 0.04);
         --color-shadow-medium: 0 3px 6px rgba(149, 157, 165, 0.15);
         --color-shadow-large: 0 8px 24px rgba(149, 157, 165, 0.2);
@@ -1698,6 +1702,8 @@ textarea {
     --color-bg-success-inverse: #2ea043;
     --color-bg-warning: rgba(187, 128, 9, 0.1);
     --color-bg-warning-inverse: #bb8009;
+    --color-scrollbar-thumb: rgba(255, 255, 255, 0.25);
+    --color-scrollbar-thumb-hover: rgba(255, 255, 255, 0.5);
     --color-shadow-small: 0 0 transparent;
     --color-shadow-medium: 0 3px 6px #010409;
     --color-shadow-large: 0 8px 24px #010409;
@@ -2348,6 +2354,8 @@ textarea {
         --color-bg-success-inverse: #2ea043;
         --color-bg-warning: rgba(187, 128, 9, 0.1);
         --color-bg-warning-inverse: #bb8009;
+        --color-scrollbar-thumb: rgba(255, 255, 255, 0.25);
+        --color-scrollbar-thumb-hover: rgba(255, 255, 255, 0.5);
         --color-shadow-small: 0 0 transparent;
         --color-shadow-medium: 0 3px 6px #010409;
         --color-shadow-large: 0 8px 24px #010409;
@@ -3398,71 +3406,35 @@ pre {
     border-top:0
 }
 
-div.sourceCode {
-    margin: 0 0 16px 0;
+/* Works on Firefox */
+* {
+    scrollbar-width: auto;
+    scrollbar-color: var(--color-scrollbar-thumb) transparent
 }
 
-pre.numberSource {
-    margin-left: 0;
-    padding-left: 1em;
-    border-left: 0
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 12px; /* width of the entire scrollbar */
+    height: 12px
 }
 
-pre.numberSource code > span,
-pre.numberSource code > span > a:first-child::before {
-    left: 0
+*::-webkit-scrollbar-track {
+    background: transparent /* color of the tracking area */
 }
 
-pre.numberSource code > span > a:first-child::before {
-    width: auto;
-    margin-right: 1em;
-    color: var(--color-codemirror-linenumber-text)
+*::-webkit-scrollbar-track-piece {
+    background: transparent
 }
 
-#TOC {
-    font-weight: bold;
-    width: 312px;
-    overflow: auto
+*::-webkit-scrollbar-thumb {
+    background-color: var(--color-scrollbar-thumb);   /* color of the scroll thumb */
+    background-clip: padding-box;
+    border-radius: 6px;       /* roundness of the scroll thumb */
+    border: 2px solid transparent  /* creates padding around scroll thumb */
 }
 
-#TOC > ul,
-#TOC > ol {
-    margin: 32px 24px !important;
-    padding: 24px;
-    background-color: var(--color-bg-tertiary);
-    border: 1px solid var(--color-border-secondary);
-    border-radius: 6px
-}
-
-#TOC li {
-    color: var(--color-text-primary)
-}
-
-#TOC li ol > *,
-#TOC li ul > * {
-    color: var(--color-text-secondary)
-}
-
-#TOC a {
-    color: inherit
-}
-
-#TOC a:hover {
-    color: var(--color-text-link);
-    text-decoration: none
-}
-
-#readme {
-    margin: 0 auto;
-    padding: 56px 24px;
-    max-width: 1060px;
-    overflow: auto
-}
-
-@media (max-width:1060px) {
-    #TOC {
-        display: none
-    }
+*::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-scrollbar-thumb-hover)
 }
 
 code span.al {
@@ -3693,4 +3665,189 @@ code span.wa {
         color: #84b360;
         font-weight: bold
     }/* Warning */
+}
+
+.markdown-body li > div {
+    margin-top: 16px
+}
+
+div.sourceCode {
+    margin: 0 0 16px 0
+}
+
+div.sourceCode > pre {
+    margin: 0
+}
+
+pre.numberSource {
+    margin-left: 0;
+    padding-left: 1em;
+    border-left: 0
+}
+
+pre.numberSource code > span,
+pre.numberSource code > span > a:first-child::before {
+    left: 0
+}
+
+pre.numberSource code > span > a:first-child::before {
+    width: auto;
+    min-width: 2em;
+    padding-right: 1em;
+    color: var(--color-codemirror-linenumber-text);
+    text-decoration: none
+}
+
+pre.numberSource code > span > a:first-child:hover:before {
+    color: var(--color-text-link);
+    text-decoration: underline
+}
+
+html,
+body {
+    font-size: 16px;
+    line-height: 1.5;
+    height: 100%
+}
+
+body {
+    max-width: 100%;
+    margin: 0;
+    padding: 0
+}
+
+main {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 0
+}
+
+.markdown-body {
+    max-width: 1012px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 30px 15px 40px;
+    position: relative
+}
+
+.sidebar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 300px;
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    background: var(--color-project-sidebar-bg);
+    border-left: 1px solid var(--color-border-secondary);
+    overflow: auto
+}
+
+.sidebar-nav {
+    padding-top: 32px;
+    padding-bottom: 32px
+}
+
+.sidebar-nav > :first-child {
+    margin-top: 0 !important
+}
+
+.sidebar-nav > :last-child {
+    margin-bottom: 0 !important
+}
+
+.sidebar-nav li,
+.sidebar-nav li > ul,
+.sidebar-nav li > ol {
+    margin-top: 4px;
+    margin-bottom: 4px
+}
+
+.sidebar-nav ol > :first-child,
+.sidebar-nav ul > :first-child,
+.sidebar-nav li > :first-child {
+    margin-top: 0 !important
+}
+
+.sidebar-nav ol > :last-child,
+.sidebar-nav ul > :last-child,
+.sidebar-nav li > :last-child {
+    margin-bottom: 0 !important
+}
+
+.sidebar-nav li > a {
+    display: block;
+    color: var(--color-text-secondary);
+    min-height: 32px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border: 1px solid transparent
+}
+
+.sidebar-nav li > a:hover {
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--color-text-link);
+    background-color: var(--color-sidenav-selected-bg);
+    border-color: var(--color-border-tertiary);
+    transition-duration: .1s
+}
+
+.sidebar-nav li {
+    list-style-type: none
+}
+
+.sidebar-nav li li > a::before {
+    display: inline-block;
+    content: "-";
+    margin-right: 4px
+}
+
+.sidebar-nav li > a {
+    padding-left: 16px
+}
+
+.sidebar-nav li li > a {
+    padding-left: 32px
+}
+
+.sidebar-nav li li li > a {
+    padding-left: 48px
+}
+
+.sidebar-nav li li li li > a {
+    padding-left: 64px
+}
+
+.sidebar-nav li li li li li > a {
+    padding-left: 80px
+}
+
+.sidebar-nav li li li li li li > a {
+    padding-left: 96px
+}
+
+.content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    overflow: auto
+}
+
+.has-sidebar {
+    right: 300px
+}
+
+@media (max-width:1012px) {
+    .sidebar {
+        display: none
+    }
+
+    .content {
+        right: 0
+    }
 }
