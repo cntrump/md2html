@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto+Mono|Source+Sans+Pro:300,400,600");
-
 * {
     -webkit-font-smoothing: antialiased;
     -webkit-overflow-scrolling: touch;
@@ -66,11 +64,10 @@ body {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     color: #34495e;
-    font-family: Source Sans Pro, Helvetica Neue, Arial, sans-serif;
+    font-family: "Source Sans Pro", -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
     font-size: 15px;
     letter-spacing: 0;
     margin: 0;
-    overflow-x: hidden
 }
 
 img {
@@ -80,6 +77,10 @@ img {
 a[disabled] {
     cursor: not-allowed;
     opacity: .6
+}
+
+pre, kbd, tt, code {
+    font-family: "Source Code Pro", "SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace
 }
 
 kbd {
@@ -214,7 +215,7 @@ li input[type=checkbox] {
 main {
     display: block;
     position: relative;
-    width: 100vw;
+    width: 100%;
     height: 100%;
     z-index: 0
 }
@@ -430,7 +431,6 @@ body.sticky .sidebar-toggle {
     border-radius: 100%;
     color: #fff;
     content: "!";
-    font-family: Dosis, Source Sans Pro, Helvetica Neue, Arial, sans-serif;
     font-size: 14px;
     font-weight: 700;
     left: -12px;
@@ -498,11 +498,6 @@ body.close .content {
         top: 30px
     }
 
-    main {
-        height: auto;
-        overflow-x: hidden
-    }
-
     .sidebar {
         left: -300px;
         transition: transform .25s ease-out
@@ -510,7 +505,7 @@ body.close .content {
 
     .content {
         left: 0;
-        max-width: 100vw;
+        max-width: 100%;
         position: static;
         padding-top: 20px;
         transition: transform .25s ease
@@ -832,7 +827,7 @@ body {
 .markdown-section code {
     border-radius: 2px;
     color: #e96900;
-    font-size: .8rem;
+    font-size: 85%;
     margin: 0 2px;
     padding: 3px 5px;
     white-space: pre-wrap
@@ -841,13 +836,12 @@ body {
 .markdown-section code,
 .markdown-section pre {
     background-color: #f8f8f8;
-    font-family: Roboto Mono, Monaco, courier, monospace
 }
 
 .markdown-section pre {
     -moz-osx-font-smoothing: initial;
     -webkit-font-smoothing: initial;
-    line-height: 1.5rem;
+    line-height: 1.45;
     margin: 1.2em 0;
     overflow: auto;
     padding: 0 1.4rem;
@@ -958,8 +952,7 @@ body {
     border-radius: 2px;
     color: #525252;
     display: block;
-    font-family: Roboto Mono, Monaco, courier, monospace;
-    font-size: .8rem;
+    font-size: 85%;
     line-height: inherit;
     margin: 0 2px;
     max-width: inherit;
@@ -993,4 +986,256 @@ pre:after {
     right: 0;
     text-align: right;
     top: 0
+}
+
+/* Works on Firefox */
+* {
+    scrollbar-width: auto !important;
+    scrollbar-color: rgba(0,0,0,.25) transparent !important
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 12px !important; /* width of the entire scrollbar */
+    height: 12px !important
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent !important /* color of the tracking area */
+}
+
+*::-webkit-scrollbar-track-piece {
+    background: transparent !important
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,.25) !important;   /* color of the scroll thumb */
+    background-clip: padding-box !important;
+    border-radius: 6px !important;       /* roundness of the scroll thumb */
+    border: 2px solid transparent !important  /* creates padding around scroll thumb */
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0,0,0,.5) !important
+}
+
+code span.al {
+    color: #ff0000
+}/* Alert */
+
+code span.an {
+    color: #2e8504
+}/* Annotation */
+
+code span.at {
+    color: #947100
+}/* Attribute */
+
+code span.bn {
+    color: #272ad8
+}/* BaseN */
+
+code span.bu {
+    color: #4b21b0
+}/* BuiltIn */
+
+code span.cf {
+    color: #ad3da4
+}/* ControlFlow */
+
+code span.ch {
+    color: #272ad8
+}/* Char */
+
+code span.cn {
+}/* Constant */
+
+code span.co {
+    color: #2e8504
+}/* Comment */
+
+code span.cv {
+    color: #2e8504
+}/* CommentVar */
+
+code span.do {
+    color: #2e8504
+}/* Documentation */
+
+code span.dt {
+    color: #ad3da4
+}/* DataType */
+
+code span.dv {
+    color: #272ad8
+}/* DecVal */
+
+code span.er {
+    color: #fafbfc;
+    background-color: #b31d28;
+    font-weight: bold
+}/* Error */
+
+code span.ex {
+}/* Extension */
+
+code span.fl {
+    color: #272ad8
+}/* Float */
+
+code span.fu {
+    color: #3e8087
+}/* Function */
+
+code span.im {
+}/* Import */
+
+code span.in {
+    color: #2e8504
+}/* Information */
+
+code span.kw {
+    color: #ad3da4
+}/* Keyword */
+
+code span.op {
+}/* Operator */
+
+code span.ot {
+    color: #947100
+}/* Other */
+
+code span.pp {
+    color: #78492a
+}/* Preprocessor */
+
+code span.sc {
+    color: #d12f1b
+}/* SpecialChar */
+
+code span.ss {
+    color: #d12f1b
+}/* SpecialString */
+
+code span.st {
+    color: #d12f1b
+}/* String */
+
+code span.va {
+}/* Variable */
+
+code span.vs {
+    color: #d12f1b
+}/* VerbatimString */
+
+code span.wa {
+    color: #2e8504;
+    font-weight: bold
+}/* Warning */
+
+html,
+body {
+    font-size: 16px;
+    line-height: 1.5
+}
+
+body {
+    max-width: 100%;
+    margin: 0;
+    padding: 0
+}
+
+.content {
+    left: 0;
+    overflow: auto
+}
+
+.has-sidebar {
+    left: 300px
+}
+
+.markdown-section {
+    max-width: 1012px
+}
+
+.sidebar ul,
+.sidebar ol {
+    margin: 0
+}
+
+.sidebar-nav li > a {
+    display: block
+}
+
+.sidebar li > a:hover {
+    font-weight: bold;
+    color: var(--theme-color,#42b983);
+    background-color: #f6f6f6;
+    text-decoration: none !important;
+    transition-duration: .1s
+}
+
+.sidebar-nav li li > a::before {
+    display: inline-block;
+    content: "-";
+    margin-right: 4px
+}
+
+.sidebar-nav li > a {
+    padding-left: 16px
+}
+
+.sidebar-nav li li > a {
+    padding-left: 32px
+}
+
+.sidebar-nav li li li > a {
+    padding-left: 48px
+}
+
+.sidebar-nav li li li li > a {
+    padding-left: 64px
+}
+
+.sidebar-nav li li li li li > a {
+    padding-left: 80px
+}
+
+.sidebar-nav li li li li li li > a {
+    padding-left: 96px
+}
+
+div.sourceCode {
+    margin: 1.2em 0
+}
+
+div.sourceCode > pre {
+    margin: 0
+}
+
+pre.numberSource {
+    border-left: none
+}
+
+pre.numberSource code > span,
+pre.numberSource code > span > a:first-child::before {
+    left: 0
+}
+
+pre.numberSource code > span > a:first-child::before {
+    color: #999;
+    text-decoration: none;
+    font-weight: normal;
+    width: auto;
+    min-width: 2em;
+    padding: 0 8px
+}
+
+pre.numberSource code > span > a:first-child:hover::before {
+    color: var(--theme-color,#42b983);
+    text-decoration: underline
+}
+
+.markdown-section pre > code {
+    overflow: unset
 }
