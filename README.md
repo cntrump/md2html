@@ -24,17 +24,19 @@ cd md2html
 
 ```
 useage:
-	md2html [-t 2] [-l zh] [-s] -i /path/to/markdown.md
+	md2html [-t 2] [-l zh] [-s] [-f markdown] -i /path/to/markdown.md
 options:
+	-f FORMAT: specify input format, default: markdown.
 	-t N: toc-depth, N must >= 1, default: 2.
 	-l en: lang, default: en.
 	-s: create self contained html, inline all resources.
 	-h: display this infomation.
 example:
 	md2html -i ./markdown.md
-	md2html -i ./markdown.md -t 2
-	md2html -i ./markdown.md -t 2 -l zh
-	md2html -i ./markdown.md -s
+	md2html -t 2 -i ./markdown.md
+	md2html -t 2 -l zh -i ./markdown.md
+	md2html -s -i ./markdown.md
+	md2html -f docx -i ./document.docx
 ```
 
 ## Docker

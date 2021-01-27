@@ -4,29 +4,35 @@ set -e
 
 print_usage_and_exit() {
   echo "useage:"
-  echo "\tmd2html [-t 2] [-l zh] [-s] -i /path/to/markdown.md"
+  echo "\tmd2html [-t 2] [-l zh] [-s] [-f markdown] -i /path/to/markdown.md"
   echo "options:"
+  echo "\t-f FORMAT: specify input format, default: markdown."
   echo "\t-t N: toc-depth, N must >= 1, default: 2."
   echo "\t-l en: lang, default: en."
   echo "\t-s: create self contained html, inline all resources."
   echo "\t-h: display this infomation."
   echo "example:"
   echo "\tmd2html -i ./markdown.md"
-  echo "\tmd2html -i ./markdown.md -t 2"
-  echo "\tmd2html -i ./markdown.md -t 2 -l zh"
-  echo "\tmd2html -i ./markdown.md -s"
+  echo "\tmd2html -t 2 -i ./markdown.md"
+  echo "\tmd2html -t 2 -l zh -i ./markdown.md"
+  echo "\tmd2html -s -i ./markdown.md"
+  echo "\tmd2html -f docx -i ./document.docx"
   exit -1
 }
 
+INPUT_FORMAT="markdown"
 LANG="en"
 TOC_DEPTH=2
 SELF_CONTAINED=
 INPUT=
 
-while getopts "t:l:i:hs" arg; do
+while getopts "f:t:l:i:hs" arg; do
   case "${arg}" in
+    "f")
+        INPUT_FORMAT=${OPTARG}
+        ;;
     "t")
-        TOC_DEPTH=${OPTARG} 
+        TOC_DEPTH=${OPTARG}
         ;;
     "l")
         LANG=${OPTARG}
@@ -59,6 +65,7 @@ fi
 
 OUTPUT=${INPUT:a:r}.html
 
+echo "input-format=\033[0;32m${INPUT_FORMAT}\033[0m"
 echo "toc-depth=\033[0;32m${TOC_DEPTH}\033[0m"
 echo "lang=\033[0;32m${LANG}\033[0m"
 
@@ -71,7 +78,7 @@ echo "</style>" >> "${STYLE_HEADER}"
 
 pushd "${APP_DIR}"
 
-pandoc -f markdown -t html \
+pandoc -f ${INPUT_FORMAT} -t html \
       --highlight-style=syntax.theme \
       --template=template.html \
       -H "${STYLE_HEADER}" \
