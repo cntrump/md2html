@@ -59,11 +59,11 @@ if [ "${INPUT}" = "" ];then
   print_usage_and_exit
 fi
 
-echo "input-format=\033[0;32m${INPUT_FORMAT}\033[0m"
-echo "lang=\033[0;32m${LANG}\033[0m"
+echo "input-format: \033[0;32m${INPUT_FORMAT}\033[0m"
+echo "language: \033[0;32m${LANG}\033[0m"
 
 if [ ${TOC_DEPTH} -gt 0 ];then
-  echo "toc-depth=\033[0;32m${TOC_DEPTH}\033[0m"
+  echo "toc-depth: \033[0;32m${TOC_DEPTH}\033[0m"
   TOC_DEPTH="--toc-depth=${TOC_DEPTH}"
 else
   echo "[INFO] toc disabled."
