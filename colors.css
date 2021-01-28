@@ -1,5 +1,5 @@
 :root, [data-color-mode=light] {
-    --color-primer-black: #24292e;
+    --color-primer-black: #1b1f23;
     --color-primer-white: #fff;
     --color-primer-gray-0: #fafbfc;
     --color-primer-gray-1: #f6f8fa;
@@ -83,11 +83,13 @@
     --color-primer-pink-9: #6d224f;
     --color-mark-bg: rgba(26, 137, 23, 0.1);
     --color-table-row-even-bg: #fafbfc;
+    --color-text-main: rgba(0, 0, 0, .85);
+    --color-bg-main: #fff
 }
 
 @media (prefers-color-scheme: light) {
     [data-color-mode=auto] {
-        --color-primer-black: #24292e;
+        --color-primer-black: #1b1f23;
         --color-primer-white: #fff;
         --color-primer-gray-0: #fafbfc;
         --color-primer-gray-1: #f6f8fa;
@@ -171,12 +173,14 @@
         --color-primer-pink-9: #6d224f;
         --color-mark-bg: rgba(26, 137, 23, 0.1);
         --color-table-row-even-bg: #fafbfc;
+        --color-text-main: rgba(0, 0, 0, .85);
+        --color-bg-main: #fff
     }
 }
 
 [data-color-mode=dark] {
-    --color-primer-white: #24292e;
-    --color-primer-black: #e1e4e8;
+    --color-primer-black: #fff;
+    --color-primer-white: #1b1f23;
     --color-primer-gray-9: #fafbfc;
     --color-primer-gray-8: #f6f8fa;
     --color-primer-gray-7: #e1e4e8;
@@ -258,13 +262,15 @@
     --color-primer-pink-1: #99306f;
     --color-primer-pink-0: #6d224f;
     --color-mark-bg: rgba(190, 245, 203, 0.1);
-    --color-table-row-even-bg: #20252a;
+    --color-table-row-even-bg: rgba(0, 0, 0, .1);
+    --color-text-main: rgba(255, 255, 255, .85);
+    --color-bg-main: #24292e;
 }
 
 @media (prefers-color-scheme: dark) {
     [data-color-mode=auto] {
-        --color-primer-white: #24292e;
-        --color-primer-black: #e1e4e8;
+        --color-primer-black: #fff;
+        --color-primer-white: #1b1f23;
         --color-primer-gray-9: #fafbfc;
         --color-primer-gray-8: #f6f8fa;
         --color-primer-gray-7: #e1e4e8;
@@ -346,6 +352,8 @@
         --color-primer-pink-1: #99306f;
         --color-primer-pink-0: #6d224f;
         --color-mark-bg: rgba(190, 245, 203, 0.1);
-        --color-table-row-even-bg: #20252a;
+        --color-table-row-even-bg: rgba(0, 0, 0, .1);
+        --color-text-main: rgba(255, 255, 255, .85);
+        --color-bg-main: #24292e;
     }
 }
