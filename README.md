@@ -1,4 +1,5 @@
-# md2html
+# md2html ![Docker Automated build](https://img.shields.io/docker/automated/cntrump/md2html?style=social)
+
 Convert markdown to HTML using pandoc
 
 - Javascript-free
@@ -27,7 +28,7 @@ useage:
 	md2html [-t 2] [-l zh] [-s] [-f markdown] -i /path/to/markdown.md
 options:
 	-f FORMAT: specify input format, default: markdown.
-	-t N: toc-depth, N must >= 1, default: 2.
+	-t N: toc-depth, N less than or equal to 0 means disable toc, default: 2.
 	-l en: lang, default: en.
 	-s: create self contained html, inline all resources.
 	-h: display this infomation.
@@ -40,6 +41,8 @@ example:
 ```
 
 ## Docker
+
+[cntrump/md2html](https://hub.docker.com/r/cntrump/md2html)
 
 ```
 docker pull cntrump/md2html
@@ -60,29 +63,35 @@ set -e
 
 print_usage_and_exit() {
   echo "useage:"
-  echo "\tmd2html [-t 2] [-l zh] [-s] -i /path/to/markdown.md"
+  echo "\tmd2html [-t 2] [-l zh] [-s] [-f markdown] -i /path/to/markdown.md"
   echo "options:"
+  echo "\t-f FORMAT: specify input format, default: markdown."
   echo "\t-t N: toc-depth, N must >= 1, default: 2."
   echo "\t-l en: lang, default: en."
   echo "\t-s: create self contained html, inline all resources."
   echo "\t-h: display this infomation."
   echo "example:"
   echo "\tmd2html -i ./markdown.md"
-  echo "\tmd2html -i ./markdown.md -t 2"
-  echo "\tmd2html -i ./markdown.md -t 2 -l zh"
-  echo "\tmd2html -i ./markdown.md -s"
+  echo "\tmd2html -t 2 -i ./markdown.md"
+  echo "\tmd2html -t 2 -l zh -i ./markdown.md"
+  echo "\tmd2html -s -i ./markdown.md"
+  echo "\tmd2html -f docx -i ./document.docx"
   exit -1
 }
 
+INPUT_FORMAT="markdown"
 LANG="en"
 TOC_DEPTH=2
 SELF_CONTAINED=
 INPUT=
 
-while getopts "t:l:i:hs" arg; do
+while getopts "f:t:l:i:hs" arg; do
   case "${arg}" in
+    "f")
+        INPUT_FORMAT=${OPTARG}
+        ;;
     "t")
-        TOC_DEPTH=${OPTARG} 
+        TOC_DEPTH=${OPTARG}
         ;;
     "l")
         LANG=${OPTARG}
@@ -108,18 +117,17 @@ if [ "${INPUT}" = "" ];then
   print_usage_and_exit
 fi
 
-if [ ${TOC_DEPTH} -lt 1 ];then
-  echo "[ERROR] toc-depth \033[0;32m${TOC_DEPTH}\033[0m, must >= 1."
-  print_usage_and_exit
-fi
-
 WORK_DIR=${INPUT:a:h}
 FILE=${INPUT:a:t}
 
 echo "workdir: ${WORK_DIR}"
 echo "file: ${FILE}"
 
-docker run -i -v "${WORK_DIR}:/data" --rm cntrump/md2html -i "${FILE}" -t ${TOC_DEPTH} -l ${LANG} ${SELF_CONTAINED}
+docker run -i -v "${WORK_DIR}:/data" --rm cntrump/md2html \
+                                          -t ${TOC_DEPTH} \
+                                          -l ${LANG} \
+                                          -f ${INPUT_FORMAT} \
+                                          ${SELF_CONTAINED} -i "${FILE}"
 
 echo Output: "\033[0;32mfile://${INPUT:a:r}.html\033[0m"
 echo Done.
