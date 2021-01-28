@@ -28,7 +28,7 @@ useage:
 	md2html [-t 2] [-l zh] [-s] [-f markdown] -i /path/to/markdown.md
 options:
 	-f FORMAT: specify input format, default: markdown.
-	-t N: toc-depth, N must >= 1, default: 2.
+	-t N: toc-depth, N less than or equal to 0 means disable toc, default: 2.
 	-l en: lang, default: en.
 	-s: create self contained html, inline all resources.
 	-h: display this infomation.
@@ -114,11 +114,6 @@ done
 
 if [ "${INPUT}" = "" ];then
   echo "[ERROR] no input file."
-  print_usage_and_exit
-fi
-
-if [ ${TOC_DEPTH} -lt 1 ];then
-  echo "[ERROR] toc-depth \033[0;32m${TOC_DEPTH}\033[0m, must >= 1."
   print_usage_and_exit
 fi
 
