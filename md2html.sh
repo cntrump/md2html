@@ -23,6 +23,7 @@ print_usage_and_exit() {
 INPUT_FORMAT="markdown"
 LANG="en"
 TOC_DEPTH=2
+TOC="--toc"
 SELF_CONTAINED=
 INPUT=
 
@@ -58,17 +59,19 @@ if [ "${INPUT}" = "" ];then
   print_usage_and_exit
 fi
 
-if [ ${TOC_DEPTH} -lt 1 ];then
-  echo "[ERROR] toc-depth \033[0;32m${TOC_DEPTH}\033[0m, must >= 1."
-  print_usage_and_exit
+echo "input-format=\033[0;32m${INPUT_FORMAT}\033[0m"
+echo "lang=\033[0;32m${LANG}\033[0m"
+
+if [ ${TOC_DEPTH} -gt 0 ];then
+  echo "toc-depth=\033[0;32m${TOC_DEPTH}\033[0m"
+  TOC_DEPTH="--toc-depth=${TOC_DEPTH}"
+else
+  echo "[INFO] toc disabled."
+  TOC=
+  TOC_DEPTH=
 fi
 
 OUTPUT=${INPUT:a:r}.html
-
-echo "input-format=\033[0;32m${INPUT_FORMAT}\033[0m"
-echo "toc-depth=\033[0;32m${TOC_DEPTH}\033[0m"
-echo "lang=\033[0;32m${LANG}\033[0m"
-
 APP_DIR=${0:a:h}
 
 STYLE_HEADER=`mktemp`
@@ -82,8 +85,7 @@ pushd "${APP_DIR}"
 pandoc -f ${INPUT_FORMAT} -t html \
       --highlight-style=syntax.theme \
       --template=template.html \
-      -H "${STYLE_HEADER}" \
-      --toc --toc-depth=${TOC_DEPTH} \
+      -H "${STYLE_HEADER}" ${TOC} ${TOC_DEPTH} \
       --variable=lang:"${LANG}" \
       --standalone ${SELF_CONTAINED} -o "${OUTPUT}" \
       "${INPUT}"
