@@ -60,29 +60,35 @@ set -e
 
 print_usage_and_exit() {
   echo "useage:"
-  echo "\tmd2html [-t 2] [-l zh] [-s] -i /path/to/markdown.md"
+  echo "\tmd2html [-t 2] [-l zh] [-s] [-f markdown] -i /path/to/markdown.md"
   echo "options:"
+  echo "\t-f FORMAT: specify input format, default: markdown."
   echo "\t-t N: toc-depth, N must >= 1, default: 2."
   echo "\t-l en: lang, default: en."
   echo "\t-s: create self contained html, inline all resources."
   echo "\t-h: display this infomation."
   echo "example:"
   echo "\tmd2html -i ./markdown.md"
-  echo "\tmd2html -i ./markdown.md -t 2"
-  echo "\tmd2html -i ./markdown.md -t 2 -l zh"
-  echo "\tmd2html -i ./markdown.md -s"
+  echo "\tmd2html -t 2 -i ./markdown.md"
+  echo "\tmd2html -t 2 -l zh -i ./markdown.md"
+  echo "\tmd2html -s -i ./markdown.md"
+  echo "\tmd2html -f docx -i ./document.docx"
   exit -1
 }
 
+INPUT_FORMAT="markdown"
 LANG="en"
 TOC_DEPTH=2
 SELF_CONTAINED=
 INPUT=
 
-while getopts "t:l:i:hs" arg; do
+while getopts "f:t:l:i:hs" arg; do
   case "${arg}" in
+    "f")
+        INPUT_FORMAT=${OPTARG}
+        ;;
     "t")
-        TOC_DEPTH=${OPTARG} 
+        TOC_DEPTH=${OPTARG}
         ;;
     "l")
         LANG=${OPTARG}
@@ -119,7 +125,11 @@ FILE=${INPUT:a:t}
 echo "workdir: ${WORK_DIR}"
 echo "file: ${FILE}"
 
-docker run -i -v "${WORK_DIR}:/data" --rm cntrump/md2html -i "${FILE}" -t ${TOC_DEPTH} -l ${LANG} ${SELF_CONTAINED}
+docker run -i -v "${WORK_DIR}:/data" --rm cntrump/md2html \
+                                          -t ${TOC_DEPTH} \
+                                          -l ${LANG} \
+                                          -f ${INPUT_FORMAT} \
+                                          ${SELF_CONTAINED} -i "${FILE}"
 
 echo Output: "\033[0;32mfile://${INPUT:a:r}.html\033[0m"
 echo Done.
