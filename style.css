@@ -3011,7 +3011,7 @@ pre {
     line-height: 10px;
     color: var(--color-auto-gray-7);
     vertical-align: middle;
-    background-color: var(--color-bg-secondary);
+    background-color: var(--color-primer-gray-1);
     border-bottom-color: var(--color-border-tertiary);
     border: 1px solid var(--color-border-tertiary);
     border-radius: 6px;
