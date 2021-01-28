@@ -1,4 +1,4 @@
-# md2html
+# md2html ![Docker Automated build](https://img.shields.io/docker/automated/cntrump/md2html?style=social)
 
 Convert markdown to HTML using pandoc
 
