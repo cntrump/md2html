@@ -6,6 +6,7 @@ RUN apk update && \
 
 ADD syntax.theme /usr/local/md2html/
 ADD template.html /usr/local/md2html/
+ADD colors.css /usr/local/md2html/
 ADD style.css /usr/local/md2html/
 ADD md2html.sh /usr/local/md2html/
 
