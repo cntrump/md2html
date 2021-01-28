@@ -29,7 +29,7 @@ useage:
 options:
 	-f FORMAT: specify input format, default: markdown.
 	-t N: toc-depth, N less than or equal to 0 means disable toc, default: 2.
-	-l en: lang, default: en.
+	-l en: language tags, default: en.
 	-s: create self contained html, inline all resources.
 	-h: display this infomation.
 example:
