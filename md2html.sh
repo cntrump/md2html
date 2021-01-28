@@ -73,6 +73,7 @@ APP_DIR=${0:a:h}
 
 STYLE_HEADER=`mktemp`
 echo "<style>" > "${STYLE_HEADER}"
+cat "${APP_DIR}/colors.css" >> "${STYLE_HEADER}"
 cat "${APP_DIR}/style.css" >> "${STYLE_HEADER}"
 echo "</style>" >> "${STYLE_HEADER}"
 

@@ -68,7 +68,7 @@ h1 {
 }
 
 mark {
-    background-color: var(--color-auto-yellow-2);
+    background-color: var(--color-mark-bg);
     color:var(--color-text-primary)
 }
 
@@ -1921,7 +1921,7 @@ textarea {
     --color-branch-name-link-text: #58a6ff;
     --color-branch-name-link-icon: #58a6ff;
     --color-branch-name-link-bg: rgba(88, 166, 255, 0.1);
-    --color-markdown-code-bg: rgba(240, 246, 252, 0.15);
+    --color-markdown-code-bg: rgba(240, 246, 252, 0.05);
     --color-markdown-frame-border: #3b434b;
     --color-markdown-blockquote-border: #3b434b;
     --color-markdown-table-border: #3b434b;
@@ -2573,7 +2573,7 @@ textarea {
         --color-branch-name-link-text: #58a6ff;
         --color-branch-name-link-icon: #58a6ff;
         --color-branch-name-link-bg: rgba(88, 166, 255, 0.1);
-        --color-markdown-code-bg: rgba(240, 246, 252, 0.15);
+        --color-markdown-code-bg: rgba(240, 246, 252, 0.05);
         --color-markdown-frame-border: #3b434b;
         --color-markdown-blockquote-border: #3b434b;
         --color-markdown-table-border: #3b434b;
@@ -2838,8 +2838,8 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
     font-size: 14px;
     line-height: 1.5;
-    color: var(--color-text-primary);
-    background-color:var(--color-bg-canvas)
+    color: var(--color-primer-black);
+    background-color:var(--color-primer-white)
 }
 
 a {
@@ -3202,12 +3202,12 @@ pre {
 }
 
 .markdown-body table tr {
-    background-color: var(--color-bg-primary);
+    background-color: var(--color-primer-white);
     border-top:1px solid var(--color-markdown-table-tr-border)
 }
 
 .markdown-body table tr:nth-child(2n) {
-    background-color:var(--color-bg-tertiary)
+    background-color: var(--color-table-row-even-bg)
 }
 
 .markdown-body table img {
@@ -3326,6 +3326,7 @@ pre {
     padding: .2em .4em;
     margin: 0;
     font-size: 85%;
+    color: var(--color-prettylights-syntax-string);
     background-color: var(--color-markdown-code-bg);
     border-radius:6px
 }
@@ -3348,6 +3349,7 @@ pre {
     font-size: 100%;
     word-break: normal;
     white-space: pre;
+    color: inherit;
     background: transparent;
     border:0
 }
@@ -3366,7 +3368,7 @@ pre {
     overflow: auto;
     font-size: 85%;
     line-height: 1.45;
-    background-color: var(--color-bg-tertiary);
+    background-color: var(--color-primer-gray-1);
     border-radius:6px
 }
 
@@ -3742,7 +3744,7 @@ main {
     width: 300px;
     font-size: 14px;
     color: var(--color-text-secondary);
-    background: var(--color-project-sidebar-bg);
+    background: var(--color-primer-gray-1);
     border-left: 1px solid var(--color-border-secondary);
     overflow: auto
 }
@@ -3790,10 +3792,8 @@ main {
 
 .sidebar-nav li > a:hover {
     text-decoration: none;
-    font-weight: bold;
     color: var(--color-text-link);
     background-color: var(--color-sidenav-selected-bg);
-    border-color: var(--color-border-tertiary);
     transition-duration: .1s
 }
 
