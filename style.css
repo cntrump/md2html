@@ -3854,12 +3854,6 @@ main {
     }
 
     .content {
-        position: relative;
-        right: 0
-    }
-
-    html,
-    body {
-        height: auto
+        position: static
     }
 }
