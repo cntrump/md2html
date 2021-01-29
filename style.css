@@ -3714,11 +3714,6 @@ pre.numberSource code > span > a:first-child:hover:before {
     text-decoration: underline
 }
 
-html,
-body {
-    height: 100%
-}
-
 body {
     max-width: 100%;
     margin: 0
@@ -3728,7 +3723,6 @@ main {
     display: block;
     position: relative;
     width: 100%;
-    height: 100%;
     z-index: 0
 }
 
@@ -3736,20 +3730,20 @@ main {
     max-width: 1012px;
     margin-right: auto;
     margin-left: auto;
-    padding: 30px 15px 40px;
+    padding: 30px 24px 40px;
     position: relative
 }
 
 .sidebar {
-    position: absolute;
+    position: fixed;
     top: 0;
-    right: 0;
+    left: 0;
     bottom: 0;
     width: 300px;
     font-size: 14px;
     color: var(--color-text-secondary);
     background: var(--color-primer-gray-1);
-    border-left: 1px solid var(--color-border-secondary);
+    border-right: 1px solid var(--color-border-secondary);
     overflow: auto
 }
 
@@ -3836,16 +3830,11 @@ main {
 }
 
 .content {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
     overflow: auto
 }
 
 .has-sidebar {
-    right: 300px
+    margin-left: 300px
 }
 
 @media (max-width:1012px) {
@@ -3854,6 +3843,6 @@ main {
     }
 
     .content {
-        position: static
+        margin-left: 0
     }
 }
