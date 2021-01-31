@@ -2,6 +2,9 @@
 
 set -e
 
+color_green="\\033[32m"
+color_end="\\033[0m"
+
 print_usage_and_exit() {
   echo "useage:"
   echo "\tmd2html [-t 2] [-l zh] [-s] [-f markdown] -i /path/to/markdown.md"
@@ -59,11 +62,11 @@ if [ "${INPUT}" = "" ];then
   print_usage_and_exit
 fi
 
-echo "input-format: \033[0;32m${INPUT_FORMAT}\033[0m"
-echo "language: \033[0;32m${LANG}\033[0m"
+echo "input-format: ${color_green}${INPUT_FORMAT}${color_end}"
+echo "language: ${color_green}${LANG}${color_end}"
 
 if [ ${TOC_DEPTH} -gt 0 ];then
-  echo "toc-depth: \033[0;32m${TOC_DEPTH}\033[0m"
+  echo "toc-depth: ${color_green}${TOC_DEPTH}${color_end}"
   TOC_DEPTH="--toc-depth=${TOC_DEPTH}"
 else
   echo "[INFO] toc disabled."
@@ -92,5 +95,5 @@ pandoc -f ${INPUT_FORMAT} -t html \
 
 rm -f "${STYLE_HEADER}"
 
-echo Output: "\033[0;32mfile://${OUTPUT}\033[0m"
+echo Output: "${color_green}file://${OUTPUT}${color_end}"
 echo Done.
