@@ -2885,7 +2885,7 @@ textarea {
 }
 
 body {
-  font-family: "Avenir Next", Arial, -apple-system, BlinkMacSystemFont, "Microsoft YaHei", "Segoe UI", Helvetica, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, Helvetica, "Microsoft YaHei", sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
   font-size: 14px;
   line-height: 1.65;
   text-rendering: optimizeLegibility;
