@@ -75,7 +75,8 @@ else
 fi
 
 OUTPUT=${INPUT:a:r}.html
-APP_DIR=${0:a:h}
+ABS_PATH=`readlink -n "${0}"`
+APP_DIR=${ABS_PATH:a:h}
 
 STYLE_HEADER=`mktemp`
 echo "<style>" > "${STYLE_HEADER}"

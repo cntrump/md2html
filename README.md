@@ -40,6 +40,15 @@ example:
 	md2html -f docx -i ./document.docx
 ```
 
+## Install to System Path
+
+Run `./install.sh` and input your login password:
+
+```
+Password:
+Installed at /usr/local/bin/md2html
+```
+
 ## Docker
 
 [cntrump/md2html](https://hub.docker.com/r/cntrump/md2html)
