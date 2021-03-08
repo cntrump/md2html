@@ -75,7 +75,7 @@ else
 fi
 
 OUTPUT=${INPUT:a:r}.html
-ABS_PATH=`readlink -n "${0}"`
+ABS_PATH=`readlink "${0}"`
 APP_DIR=${ABS_PATH:a:h}
 
 STYLE_HEADER=`mktemp`

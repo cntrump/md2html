@@ -13,13 +13,15 @@ if [ -d ${target} ]; then
 fi
 
 sudo mkdir ${target}
+echo "Created directory: ${target}"
 
 install_file() {
   src=${1}
   if [ -f ${src} ]; then
     sudo cp ${src} ${target}
+    echo "Installed ${src} -> ${target}"
   else
-    echo "missing file: ${src}"
+    echo "Missing: ${src}"
   fi   
 }
 
@@ -31,6 +33,8 @@ install_file ./md2html.sh
 
 sudo chmod u+x ${target}/md2html.sh
 
-sudo ln -sf ${target}/md2html.sh /usr/local/bin/md2html
+md2html=/usr/local/bin/md2html
+sudo ln -sf ${target}/md2html.sh ${md2html}
+echo "Linked ${target}/md2html.sh -> ${md2html}"
 
-echo "Installed at /usr/local/bin/md2html"
+echo "Install finished."
