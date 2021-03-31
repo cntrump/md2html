@@ -21,7 +21,7 @@ print_usage_and_exit() {
 }
 
 INPUT_FORMAT="markdown"
-LANG="en"
+DOC_LANG="en"
 TOC_DEPTH=2
 TOC="--toc"
 SELF_CONTAINED=
@@ -36,7 +36,7 @@ while getopts "f:t:l:i:hs" arg; do
         TOC_DEPTH=${OPTARG}
         ;;
     "l")
-        LANG=${OPTARG}
+        DOC_LANG=${OPTARG}
         ;;
     "i")
         INPUT=${OPTARG:a}
@@ -60,7 +60,7 @@ if [ "${INPUT}" = "" ];then
 fi
 
 echo "input-format: \033[0;32m${INPUT_FORMAT}\033[0m"
-echo "language: \033[0;32m${LANG}\033[0m"
+echo "language: \033[0;32m${DOC_LANG}\033[0m"
 
 if [ ${TOC_DEPTH} -gt 0 ];then
   echo "toc-depth: \033[0;32m${TOC_DEPTH}\033[0m"
@@ -82,11 +82,13 @@ echo "</style>" >> "${STYLE_HEADER}"
 
 pushd "${APP_DIR}"
 
+echo "\n`pandoc --version`\n"
+
 pandoc -f ${INPUT_FORMAT} -t html \
       --highlight-style=syntax.theme \
       --template=template.html \
       -H "${STYLE_HEADER}" ${TOC} ${TOC_DEPTH} \
-      --variable=lang:"${LANG}" \
+      --variable=lang:"${DOC_LANG}" \
       --standalone ${SELF_CONTAINED} -o "${OUTPUT}" \
       "${INPUT}"
 
